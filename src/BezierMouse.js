@@ -3,11 +3,13 @@
 
   This code is MIT licensed.
 **/
-
 import { Bezier } from "bezier-js";
+import { Point, mouse, straightTo } from "@nut-tree/nut-js";
 import { choice, randint } from "./utils.js";
 
 const { abs, ceil } = Math;
+
+mouse.config.mouseSpeed = 40;
 
 /**
  * BezierMouse class generates natural mouse movement using bezier curves
@@ -64,20 +66,3 @@ export default class BezierMouse {
       initY + choice([-1, 1]) * deltaY * 0.01 * randDeviation(),
     ];
   }
-
-  // TODO:
-  //   * @param {number} speed - integer multiplier for speed. 1=fastest, 1< slower
-  // Calculate time parameter values
-  // const ts = [];
-  // for (let t = 0; t < speed * 101; t++) {
-  //   ts.push(t / (speed * 100));
-  // }
-
-  //   toString() {
-  //     return utils.pointsToString(this.points);
-  //   }
-
-  //   _error(pc, np1, s, e) {
-  //     //
-  //   }
-}
