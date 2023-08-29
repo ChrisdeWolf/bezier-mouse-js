@@ -1,11 +1,7 @@
 import { expect } from "chai";
 import sinon from "sinon";
 import BezierMouse from "../src/BezierMouse.js";
-// TODO: figure out how to stub utils properly... or stub Math.x
-// import utils from "../src/utils.js";
-// import { choice, randint } from "../src/utils.js";
-// const utils = require("../src/utils.js");
-// const utils = { choice, randint };
+import Utils from "../src/Utils.js";
 
 describe("BezierMouse", () => {
   let BezMouse, initPos, finPos, deviation;
@@ -34,16 +30,17 @@ describe("BezierMouse", () => {
   });
 
   describe("getBezierControlPoint", () => {
-    // beforeEach(() => {
-    //   sinon.stub(utils, "choice").returns(1);
-    //   sinon.stub(utils, "randint").returns(16);
-    // });
-    // afterEach(() => {
-    //   utils.choice.restore();
-    // });
-    // it("returns a psuedo-random bezier control point based on the initial/end positions and the deviation", () => {
-    //   const point = BezMouse.getBezierControlPoint(initPos, finPos, deviation);
-    //   expect(point).eql([12, 12]);
-    // });
+    beforeEach(() => {
+      sinon.stub(Utils, "choice").returns(0.6);
+      sinon.stub(Utils, "randint").returns(16);
+    });
+    afterEach(() => {
+      Utils.choice.restore();
+      Utils.randint.restore();
+    });
+    it("returns a psuedo-random bezier control point based on the initial/end positions and the deviation", () => {
+      const point = BezMouse.getBezierControlPoint(initPos, finPos, deviation);
+      expect(point).eql([148, 148]);
+    });
   });
 });

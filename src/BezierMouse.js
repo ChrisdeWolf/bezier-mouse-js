@@ -5,7 +5,7 @@
 **/
 import { Bezier } from "bezier-js";
 import { Point, mouse, straightTo } from "@nut-tree/nut-js";
-import { choice, randint } from "./utils.js";
+import Utils from "./Utils.js";
 
 const { abs, ceil } = Math;
 
@@ -59,10 +59,11 @@ export default class BezierMouse {
 
     const deltaX = abs(ceil(finX) - ceil(initX));
     const deltaY = abs(ceil(finY) - ceil(initY));
-    const randDeviation = () => randint(deviation / 2, deviation);
+    const randDeviation = () => Utils.randint(deviation / 2, deviation);
 
     return [
-      initX + choice([-1, 1]) * deltaX * 0.01 * randDeviation(),
-      initY + choice([-1, 1]) * deltaY * 0.01 * randDeviation(),
+      initX + Utils.choice([-1, 1]) * deltaX * 0.01 * randDeviation(),
+      initY + Utils.choice([-1, 1]) * deltaY * 0.01 * randDeviation(),
     ];
   }
+}
