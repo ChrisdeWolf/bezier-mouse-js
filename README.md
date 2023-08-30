@@ -7,10 +7,7 @@ Simple usage:
 ```
 (async () => {
   const bezMouse = new BezierMouse();
-  const initialPosition = [100, 100];
-  const finalPosition = [700, 700];
-  const deviation = 20;
-  await bezMouse.move(initialPosition, finalPosition, deviation);
+  await bezMouse.move([100, 100], [700, 700]);
 })();
 ```
 
