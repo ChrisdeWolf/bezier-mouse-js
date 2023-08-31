@@ -27,10 +27,14 @@ export default class BezierMouse {
    * @property {number} y - The y-coordinate of the point.
    * @param {Point} initPos
    * @param {Point} finPos
-   * @param {number} deviation - deviation scale (larger = more curve)
+   * @typedef {Object} Options
+   * @property {number} deviation - deviation scale (larger = more curve). default=20.
+   * @property {number} flip - controls where the control points are anchored from, false: curves closer to finish position, true: curves closer to init position. default=false.
+   * @property {number} steps - number of steps (points) when moving on the bezier curve (t=0 to t=1 at interval 1/steps). default=100.
+   * @param {Options} opts
    */
-  async move(initPos, finPos, deviation) {
-    await mouse.move(this.bezierCurveTo(initPos, finPos, deviation));
+  async move(initPos, finPos, opts) {
+    await mouse.move(this.bezierCurveTo(initPos, finPos, opts));
   }
 
   /**
@@ -39,20 +43,17 @@ export default class BezierMouse {
    * @property {number} y - The y-coordinate of the point.
    * @param {Point} initPos
    * @param {Point} finPos
-   * @param {number} deviation - deviation scale (larger = more curve)
+   * @typedef {Object} Options
+   * @property {number} deviation - deviation scale (larger = more curve). default=20.
+   * @property {number} flip - controls where the control points are anchored from, false: curves closer to finish position, true: curves closer to init position. default=false.
+   * @property {number} steps - number of steps (points) when moving on the bezier curve (t=0 to t=1 at interval 1/steps). default=100.
+   * @param {Options} opts
    */
-  async bezierCurveTo(initPos, finPos, deviation) {
-    const curve = this.cubicBezierCurve(initPos, finPos, deviation);
-    const steps = 120; // TODO: handle step: https://pomax.github.io/bezierjs/#getLUT
-    const LUT = curve.getLUT(steps);
+  async bezierCurveTo(initPos, finPos, opts) {
+    const curve = this.cubicBezierCurve(initPos, finPos, opts);
+    const LUT = curve.getLUT(opts.steps || 100);
 
-    // TODO: figure out why bezier is backwards!
-    // return LUT.map((point) => new Point(point.x, point.y));
-    let points = [];
-    for (let t = LUT.length - 1; t >= 0; t--) {
-      points.push(new Point(LUT[t].x, LUT[t].y));
-    }
-    return points;
+    return LUT.map((point) => new Point(point.x, point.y));
   }
 
   /**
@@ -61,11 +62,14 @@ export default class BezierMouse {
    * @property {number} y - The y-coordinate of the point.
    * @param {Point} initPos
    * @param {Point} finPos
-   * @param {number} deviation - deviation scale (larger = more curve)
+   * @typedef {Object} Options
+   * @property {number} deviation - deviation scale (larger = more curve). default=20.
+   * @property {number} flip - controls where the control points are anchored from, false: curves closer to finish position, true: curves closer to init position. default=false.
+   * @param {Options} opts
    */
-  cubicBezierCurve(initPos, finPos, deviation) {
-    const [c0x, c0y] = this.getBezierControlPoint(initPos, finPos, deviation);
-    const [c1x, c1y] = this.getBezierControlPoint(initPos, finPos, deviation);
+  cubicBezierCurve(initPos, finPos, opts) {
+    const [c0x, c0y] = this.getBezierControlPoint(initPos, finPos, opts);
+    const [c1x, c1y] = this.getBezierControlPoint(initPos, finPos, opts);
     const [initX, initY] = initPos;
     const [finX, finY] = finPos;
 
@@ -80,9 +84,10 @@ export default class BezierMouse {
 
   /**
    * returns a bezier control points between deviation/2 and
-   * deviation of total distance (+/- random)
+   * deviation of total distance (+/- random) against finPos
    */
-  getBezierControlPoint(initPos, finPos, deviation = 5) {
+  getBezierControlPoint(initPos, finPos, opts) {
+    const { deviation = 20, flip = false } = opts;
     const [initX, initY] = initPos;
     const [finX, finY] = finPos;
 
@@ -90,9 +95,11 @@ export default class BezierMouse {
     const deltaY = abs(ceil(finY) - ceil(initY));
     const randDeviation = () => Utils.randint(deviation / 2, deviation);
 
+    const refPointX = flip ? initX : finX;
+    const refPointY = flip ? initY : finY;
     return [
-      initX + Utils.choice([-1, 1]) * deltaX * 0.01 * randDeviation(),
-      initY + Utils.choice([-1, 1]) * deltaY * 0.01 * randDeviation(),
+      refPointX + Utils.choice([-1, 1]) * deltaX * 0.01 * randDeviation(),
+      refPointY + Utils.choice([-1, 1]) * deltaY * 0.01 * randDeviation(),
     ];
   }
 }

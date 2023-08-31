@@ -40,7 +40,7 @@ describe("BezierMouse", () => {
     });
     it("returns a psuedo-random bezier control point based on the initial/end positions and the deviation", () => {
       const point = BezMouse.getBezierControlPoint(initPos, finPos, deviation);
-      expect(point).eql([148, 148]);
+      expect(point).eql([648, 648]);
     });
   });
 });
