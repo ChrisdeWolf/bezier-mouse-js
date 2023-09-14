@@ -90,10 +90,6 @@ export default class BezierMouse {
       refPointY + Utils.choice([-1, 1]) * deltaY * 0.01 * randDeviation(),
     ];
   }
-
-  //   _error() {
-  //     //
-  //   }
 }
 
 // typedefs

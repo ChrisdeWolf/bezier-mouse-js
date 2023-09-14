@@ -142,4 +142,14 @@ describe("BezierMouse", () => {
       expect(point).eql([148, 148]);
     });
   });
+  // usage example:
+  // (async () => {
+  //   const bezMouse = new BezierMouse(75);
+  //   await bezMouse.moveAndDoubleClick([100, 100], [700, 700], "LEFT", {
+  //     steps: 110,
+  //     deviation: 45,
+  //     flip: false,
+  //   });
+  //   await bezMouse.moveAndDoubleClick([700, 700], [150, 150]);
+  // })();
 });
