@@ -33,7 +33,7 @@ export default class BezierMouse {
    * @property {number} steps - number of steps (points) when moving on the bezier curve (t=0 to t=1 at interval 1/steps). default=100.
    * @param {Options} opts
    */
-  async move(initPos, finPos, opts) {
+  async move(initPos, finPos, opts = {}) {
     await mouse.move(this.bezierCurveTo(initPos, finPos, opts));
   }
 
@@ -49,7 +49,7 @@ export default class BezierMouse {
    * @property {number} steps - number of steps (points) when moving on the bezier curve (t=0 to t=1 at interval 1/steps). default=100.
    * @param {Options} opts
    */
-  async bezierCurveTo(initPos, finPos, opts) {
+  async bezierCurveTo(initPos, finPos, opts = {}) {
     const curve = this.cubicBezierCurve(initPos, finPos, opts);
     const LUT = curve.getLUT(opts.steps || 100);
 
@@ -67,7 +67,7 @@ export default class BezierMouse {
    * @property {number} flip - controls where the control points are anchored from, false: curves closer to finish position, true: curves closer to init position. default=false.
    * @param {Options} opts
    */
-  cubicBezierCurve(initPos, finPos, opts) {
+  cubicBezierCurve(initPos, finPos, opts = {}) {
     const [c0x, c0y] = this.getBezierControlPoint(initPos, finPos, opts);
     const [c1x, c1y] = this.getBezierControlPoint(initPos, finPos, opts);
     const [initX, initY] = initPos;
@@ -86,7 +86,7 @@ export default class BezierMouse {
    * returns a bezier control points between deviation/2 and
    * deviation of total distance (+/- random) against finPos
    */
-  getBezierControlPoint(initPos, finPos, opts) {
+  getBezierControlPoint(initPos, finPos, opts = {}) {
     const { deviation = 20, flip = false } = opts;
     const [initX, initY] = initPos;
     const [finX, finY] = finPos;
