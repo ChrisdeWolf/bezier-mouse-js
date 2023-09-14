@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.1",
   "description": "Lightweight javascript library to mirror human-like mouse movements with Bézier curves.",
-  "main": "index.js",
+  "main": "src/BezierMouse.js",
   "scripts": {
     "test": "mocha",
     "docs": "./node_modules/.bin/jsdoc ./src/BezierMouse.js -d docs/"
