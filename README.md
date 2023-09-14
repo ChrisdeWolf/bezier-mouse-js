@@ -14,9 +14,9 @@ Simple usage:
 import BezierMouse from "bezier-mouse-js";
 
 (async () => {
-  const bezMouse = new BezierMouse(75);
+  const bezMouse = new BezierMouse();
   await bezMouse.moveAndClick([100, 100], [700, 700]);
-  await bezMouse.moveAndDoubleClick([700, 700], [150, 150], "LEFT", { steps: 110, deviation: 45 });
+  await bezMouse.moveAndDoubleClick([700, 700], [150, 150]);
 })();
 ```
 
@@ -24,6 +24,16 @@ import BezierMouse from "bezier-mouse-js";
 
 **[Demos Here](https://chrisdewolf.github.io/bezier-mouse-js-docs/)**
 
+Option Support:
+```
+import BezierMouse from "bezier-mouse-js";
+
+(async () => {
+  const bezMouse = new BezierMouse(75);
+  await bezMouse.moveAndClick([100, 100], [700, 700]);
+  await bezMouse.moveAndDoubleClick([700, 700], [150, 150], "LEFT", { steps: 110, deviation: 45 });
+})();
+```
 
 Underlying mouse control framework:
 https://nutjs.dev/
