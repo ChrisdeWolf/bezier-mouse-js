@@ -2,7 +2,7 @@ import chai, { expect } from "chai";
 import sinon from "sinon";
 import sinonChai from "sinon-chai";
 chai.use(sinonChai);
-import { mouse } from "@nut-tree/nut-js";
+import { mouse, Button } from "@nut-tree/nut-js";
 import BezierMouse from "../src/BezierMouse.js";
 import Utils from "../src/Utils.js";
 
@@ -14,6 +14,52 @@ describe("BezierMouse", () => {
     finPos = [600, 600];
     deviation = 20;
   });
+  describe("moveAndClick", () => {
+    beforeEach(async () => {
+      sinon.stub(mouse, "move").resolves();
+      sinon.stub(mouse, "click").resolves();
+    });
+    afterEach(async () => {
+      mouse.move.restore();
+      mouse.click.restore();
+    });
+    it("moves the mouse to position", async () => {
+      await BezMouse.moveAndClick(initPos, finPos);
+      expect(mouse.move).calledOnce;
+    });
+    it("then clicks (default LEFT click)", async () => {
+      await BezMouse.moveAndClick(initPos, finPos);
+      expect(mouse.click).calledWith(Button.LEFT);
+    });
+    it("can use a different button to click", async () => {
+      await BezMouse.moveAndClick(initPos, finPos, "RIGHT");
+      expect(mouse.click).calledWith(Button.RIGHT);
+    });
+  });
+
+  describe("moveAndDoubleClick", () => {
+    beforeEach(async () => {
+      sinon.stub(mouse, "move").resolves();
+      sinon.stub(mouse, "doubleClick").resolves();
+    });
+    afterEach(async () => {
+      mouse.move.restore();
+      mouse.doubleClick.restore();
+    });
+    it("moves the mouse to position", async () => {
+      await BezMouse.moveAndDoubleClick(initPos, finPos);
+      expect(mouse.move).calledOnce;
+    });
+    it("then double-clicks (default LEFT click)", async () => {
+      await BezMouse.moveAndDoubleClick(initPos, finPos);
+      expect(mouse.doubleClick).calledWith(Button.LEFT);
+    });
+    it("can use a different button to click", async () => {
+      await BezMouse.moveAndDoubleClick(initPos, finPos, "RIGHT");
+      expect(mouse.doubleClick).calledWith(Button.RIGHT);
+    });
+  });
+
   describe("move", () => {
     beforeEach(async () => {
       sinon.stub(mouse, "move").resolves();

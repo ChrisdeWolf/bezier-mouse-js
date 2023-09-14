@@ -4,7 +4,7 @@
   This code is MIT licensed.
 **/
 import { Bezier } from "bezier-js";
-import { Point, mouse } from "@nut-tree/nut-js";
+import { Point, mouse, Button } from "@nut-tree/nut-js";
 import Utils from "./Utils.js";
 
 const { abs, ceil } = Math;
@@ -19,6 +19,41 @@ export default class BezierMouse {
    */
   constructor(mouseSpeed) {
     mouse.config.mouseSpeed = mouseSpeed || 100;
+  }
+
+  /**
+   * @typedef {Object} Point
+   * @property {number} x - The x-coordinate of the point.
+   * @property {number} y - The y-coordinate of the point.
+   * @param {Point} initPos
+   * @param {Point} finPos
+   * @typedef {Object} Options
+   * @property {number} deviation - deviation scale (larger = more curve). default=20.
+   * @property {number} flip - controls where the control points are anchored from, false: curves closer to finish position, true: curves closer to init position. default=false.
+   * @property {number} steps - number of steps (points) when moving on the bezier curve (t=0 to t=1 at interval 1/steps). default=100.
+   * @param {Options} opts
+   */
+  async moveAndClick(initPos, finPos, clickType = "LEFT", opts = {}) {
+    await this.move(initPos, finPos, opts);
+    await mouse.click(Button[clickType]);
+  }
+
+  /**
+   * @typedef {Object} Point
+   * @property {number} x - The x-coordinate of the point.
+   * @property {number} y - The y-coordinate of the point.
+   * @param {Point} initPos
+   * @param {Point} finPos
+   * @param {String} clickType - LEFT, MIDDLE, RIGHT
+   * @typedef {Object} Options
+   * @property {number} deviation - deviation scale (larger = more curve). default=20.
+   * @property {number} flip - controls where the control points are anchored from, false: curves closer to finish position, true: curves closer to init position. default=false.
+   * @property {number} steps - number of steps (points) when moving on the bezier curve (t=0 to t=1 at interval 1/steps). default=100.
+   * @param {Options} opts
+   */
+  async moveAndDoubleClick(initPos, finPos, clickType = "LEFT", opts = {}) {
+    await this.move(initPos, finPos, opts);
+    await mouse.doubleClick(Button[clickType]);
   }
 
   /**
@@ -102,4 +137,8 @@ export default class BezierMouse {
       refPointY + Utils.choice([-1, 1]) * deltaY * 0.01 * randDeviation(),
     ];
   }
+
+  //   _error() {
+  //     //
+  //   }
 }
