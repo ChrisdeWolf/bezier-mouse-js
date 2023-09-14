@@ -1,15 +1,24 @@
 {
   "name": "bezier-mouse-js",
   "type": "module",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "Lightweight javascript library to mirror human-like mouse movements with Bézier curves.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "docs": "./node_modules/.bin/jsdoc ./src/BezierMouse.js -d docs/"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["bot","automation","bezier","mouse","bezier-curves","mouse-emulation","autoclicker","mouse-movement" ],
+  "author": "ChrisdeWolf",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ChrisdeWolf/bezier-mouse-js/issues"
+  },
+  "homepage": "https://github.com/ChrisdeWolf/bezier-mouse-js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ChrisdeWolf/bezier-mouse-js"
+  },
   "dependencies": {
     "@nut-tree/nut-js": "^3.1.2",
     "bezier-js": "^6.1.4"
