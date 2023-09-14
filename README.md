@@ -24,7 +24,7 @@ import BezierMouse from "bezier-mouse-js";
 
 **[Demos Here](https://chrisdewolf.github.io/bezier-mouse-js-docs/)**
 
-Option Support:
+Advanced usage:
 ```
 import BezierMouse from "bezier-mouse-js";
 
