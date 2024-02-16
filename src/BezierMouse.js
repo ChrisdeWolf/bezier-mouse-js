@@ -2,7 +2,7 @@
  * @module BezierMouse
  */
 import { Bezier } from "bezier-js";
-import { Point, mouse, Button } from "@nut-tree/nut-js";
+import { Point, mouse, Button, Region, randomPointIn } from "@nut-tree/nut-js";
 import Utils from "./Utils.js";
 
 const { abs, ceil } = Math;
@@ -49,8 +49,29 @@ export default class BezierMouse {
    * @param {Options} opts
    */
   async move(initPos, finPos, opts = {}) {
-    await mouse.move(this.bezierCurveTo(initPos, finPos, opts));
+    let finishPosition = finPos;
+    if (!opts.preciseClick) {
+      const deviation = 5;
+      const randDeviation = () => Utils.randint(deviation / 2, deviation);
+      const region = new Region(
+        finPos[0],
+        finPos[1],
+        randDeviation(),
+        randDeviation()
+      );
+      const randFinPos = await randomPointIn(region);
+      finishPosition = [randFinPos.x, randFinPos.y];
+    }
+    await mouse.move(this.bezierCurveTo(initPos, finishPosition, opts));
   }
+
+  // async click(finPos, clickType, natural = true) {
+  //   // TODO:
+  //   // - factor in a random (not very likely) total misclick, where the region is large
+  //   //    - if this misclick=true, then do a recovery click after to ensure click is made
+  //
+  //   await mouse.click(Button[clickType]);
+  // }
 
   async bezierCurveTo(initPos, finPos, opts = {}) {
     const curve = this.cubicBezierCurve(initPos, finPos, opts);
@@ -92,7 +113,7 @@ export default class BezierMouse {
   }
 }
 
-// typedefs
+/* typedefs */
 /**
  * @typedef {Object} Point
  * @property {number} x - The x-coordinate of the point.
@@ -103,4 +124,5 @@ export default class BezierMouse {
  * @property {number} deviation - deviation scale (larger = more curve). default=20.
  * @property {number} flip - controls where the control points are anchored from, false: curves closer to finish position, true: curves closer to init position. default=false.
  * @property {number} steps - number of steps (points) when moving on the bezier curve (t=0 to t=1 at interval 1/steps). default=100.
+ * @property {boolean} preciseClick - controls if click action should be on exact point. default=false.
  */

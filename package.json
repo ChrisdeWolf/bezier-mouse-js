@@ -8,7 +8,7 @@
     "test": "mocha",
     "docs": "./node_modules/.bin/jsdoc ./src/BezierMouse.js -d docs/"
   },
-  "keywords": ["bot","automation","bezier","mouse","bezier-curves","mouse-emulation","autoclicker","mouse-movement" ],
+  "keywords": ["automation","bot","botting","bezier","mouse","bezier-curves","mouse-emulation","autoclicker","mouse-movement" ],
   "author": "ChrisdeWolf",
   "license": "MIT",
   "bugs": {
