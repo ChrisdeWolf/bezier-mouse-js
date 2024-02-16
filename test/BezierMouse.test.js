@@ -2,7 +2,7 @@ import chai, { expect } from "chai";
 import sinon from "sinon";
 import sinonChai from "sinon-chai";
 chai.use(sinonChai);
-import { mouse, Button } from "@nut-tree/nut-js";
+import { mouse, Button, randomPointIn } from "@nut-tree/nut-js";
 import BezierMouse from "../src/BezierMouse.js";
 import Utils from "../src/Utils.js";
 
@@ -62,14 +62,24 @@ describe("BezierMouse", () => {
 
   describe("move", () => {
     beforeEach(async () => {
+      sinon.spy(Utils, "randint");
       sinon.stub(mouse, "move").resolves();
     });
     afterEach(async () => {
+      Utils.randint.restore();
       mouse.move.restore();
     });
     it("uses nut-js mouse movement to move the mouse along the generated bezier curve", async () => {
       await BezMouse.move(initPos, finPos);
       expect(mouse.move).calledOnce;
+    });
+    it("by default applies a slightly random deviation to the finish position", async () => {
+      await BezMouse.move(initPos, finPos);
+      expect(Utils.randint).callCount(6);
+    });
+    it("can use exact finish position coordinates by passing opts.preciseClick", async () => {
+      await BezMouse.move(initPos, finPos, { preciseClick: true });
+      expect(Utils.randint).callCount(4);
     });
   });
 
