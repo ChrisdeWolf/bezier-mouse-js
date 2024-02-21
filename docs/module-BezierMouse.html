@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: module:BezierMouse</title>
+    <title>JSDoc: Module: BezierMouse</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: module:BezierMouse</h1>
+    <h1 class="page-title">Module: BezierMouse</h1>
 
     
 
@@ -28,11 +28,6 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>module:BezierMouse<span class="signature">(mouseSpeed)</span><span class="type-signature"></span></h2>
-        
-            <div class="class-description">BezierMouse class generates natural mouse movement using bezier curves</div>
-        
-    
 </header>
 
 <article>
@@ -40,34 +35,108 @@
     
         
 
-    
-    <h2>Constructor</h2>
-    
+        
 
-    
-    <h4 class="name" id="module:BezierMouse"><span class="type-signature"></span>new module:BezierMouse<span class="signature">(mouseSpeed)</span><span class="type-signature"></span></h4>
-    
+
+<dl class="details">
 
     
 
-
-
-<div class="description">
-    constructor
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
     
 
-<table class="params">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="BezierMouse.js.html">BezierMouse.js</a>, <a href="BezierMouse.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Classes</h3>
+
+        <dl>
+            <dt><a href="module-BezierMouse-BezierMouse.html">BezierMouse</a></dt>
+            <dd></dd>
+        </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Type Definitions</h3>
+
+        
+                
+<h4 class="name" id="~Options">Options</h4>
+
+
+
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
     <thead>
     <tr>
         
@@ -89,7 +158,7 @@
 
         <tr>
             
-                <td class="name"><code>mouseSpeed</code></td>
+                <td class="name"><code>deviation</code></td>
             
 
             <td class="type">
@@ -105,14 +174,81 @@
 
             
 
-            <td class="description last">mouse movement speed in pixels per second</td>
+            <td class="description last">deviation scale (larger = more curve). default=20.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>flip</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">controls where the control points are anchored from, false: curves closer to finish position, true: curves closer to init position. default=false.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>steps</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">number of steps (points) when moving on the bezier curve (t=0 to t=1 at interval 1/steps). default=100.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>preciseClick</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">controls if click action should be on exact point. default=false.</td>
         </tr>
 
     
     </tbody>
 </table>
-
-
 
 
 
@@ -146,7 +282,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="BezierMouse.js.html">BezierMouse.js</a>, <a href="BezierMouse.js.html#line13">line 13</a>
+        <a href="BezierMouse.js.html">BezierMouse.js</a>, <a href="BezierMouse.js.html#line129">line 129</a>
     </li></ul></dd>
     
 
@@ -162,65 +298,34 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
             
+                
+<h4 class="name" id="~Point">Point</h4>
+
+
+
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
 
     
 
-    
-    <h4 class="name" id="bezierCurveTo"><span class="type-signature">(async) </span>bezierCurveTo<span class="signature">(initPos, finPos, opts)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
+<table class="props">
     <thead>
     <tr>
         
@@ -242,13 +347,13 @@
 
         <tr>
             
-                <td class="name"><code>initPos</code></td>
+                <td class="name"><code>x</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="global.html#Point">Point</a></span>
+<span class="param-type">number</span>
 
 
             
@@ -258,20 +363,20 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">The x-coordinate of the point.</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>finPos</code></td>
+                <td class="name"><code>y</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="global.html#Point">Point</a></span>
+<span class="param-type">number</span>
 
 
             
@@ -281,37 +386,12 @@
 
             
 
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>opts</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#Options">Options</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
+            <td class="description last">The y-coordinate of the point.</td>
         </tr>
 
     
     </tbody>
 </table>
-
-
 
 
 
@@ -345,7 +425,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="BezierMouse.js.html">BezierMouse.js</a>, <a href="BezierMouse.js.html#line60">line 60</a>
+        <a href="BezierMouse.js.html">BezierMouse.js</a>, <a href="BezierMouse.js.html#line124">line 124</a>
     </li></ul></dd>
     
 
@@ -361,615 +441,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
             
-
-    
-
-    
-    <h4 class="name" id="move"><span class="type-signature">(async) </span>move<span class="signature">(initPos, finPos, opts)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    move: moves mouse on a bezier curve
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>initPos</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#Point">Point</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>finPos</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#Point">Point</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>opts</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#Options">Options</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="BezierMouse.js.html">BezierMouse.js</a>, <a href="BezierMouse.js.html#line51">line 51</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="moveAndClick"><span class="type-signature">(async) </span>moveAndClick<span class="signature">(initPos, finPos, opts)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    moveAndClick: moves mouse on a bezier curve and clicks
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>initPos</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#Point">Point</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>finPos</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#Point">Point</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>opts</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#Options">Options</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="BezierMouse.js.html">BezierMouse.js</a>, <a href="BezierMouse.js.html#line28">line 28</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="moveAndDoubleClick"><span class="type-signature">(async) </span>moveAndDoubleClick<span class="signature">(initPos, finPos, clickType, opts)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    moveAndDoubleClick: moves mouse on a bezier curve and double clicks
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>initPos</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#Point">Point</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>finPos</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#Point">Point</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>clickType</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-                <td class="default">
-                
-                    LEFT
-                
-                </td>
-            
-
-            <td class="description last">LEFT, MIDDLE, RIGHT</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>opts</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#Options">Options</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="BezierMouse.js.html">BezierMouse.js</a>, <a href="BezierMouse.js.html#line40">line 40</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-    
-
     
 
     
@@ -983,13 +455,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-BezierMouse.html">BezierMouse</a></li></ul><h3>Classes</h3><ul><li><a href="module-BezierMouse.html">BezierMouse</a></li></ul><h3><a href="global.html">Global</a></h3>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-BezierMouse.html">BezierMouse</a></li></ul><h3>Classes</h3><ul><li><a href="module-BezierMouse-BezierMouse.html">BezierMouse</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Sep 14 2023 11:47:52 GMT-0600 (Mountain Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Feb 20 2024 22:31:46 GMT-0700 (Mountain Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
