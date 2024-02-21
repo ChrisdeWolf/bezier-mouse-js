@@ -1,16 +1,23 @@
 /**
  * @module BezierMouse
  */
-import { Bezier } from "bezier-js";
-import { Point, mouse, Button, Region, randomPointIn } from "@nut-tree/nut-js";
-import Utils from "./Utils.js";
+
+const { Bezier } = require("bezier-js");
+const {
+  Point,
+  mouse,
+  Button,
+  Region,
+  randomPointIn,
+} = require("@nut-tree/nut-js");
+const Utils = require("./Utils.js");
 
 const { abs, ceil } = Math;
 
 /**
  * BezierMouse class generates natural mouse movement using bezier curves
  */
-export default class BezierMouse {
+class BezierMouse {
   /**
    * constructor
    * @param {number} mouseSpeed - mouse movement speed in pixels per second
@@ -126,3 +133,5 @@ export default class BezierMouse {
  * @property {number} steps - number of steps (points) when moving on the bezier curve (t=0 to t=1 at interval 1/steps). default=100.
  * @property {boolean} preciseClick - controls if click action should be on exact point. default=false.
  */
+
+module.exports = BezierMouse;

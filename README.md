@@ -11,7 +11,7 @@ npm install bezier-mouse-js
 
 Simple usage:
 ```
-import BezierMouse from "bezier-mouse-js";
+const BezierMouse = require("../src/BezierMouse");
 
 (async () => {
   const bezMouse = new BezierMouse();
@@ -26,12 +26,12 @@ import BezierMouse from "bezier-mouse-js";
 
 Advanced usage:
 ```
-import BezierMouse from "bezier-mouse-js";
+const BezierMouse = require("../src/BezierMouse");
 
 (async () => {
   const bezMouse = new BezierMouse(75);
   await bezMouse.moveAndClick([100, 100], [700, 700]);
-  await bezMouse.moveAndDoubleClick([700, 700], [150, 150], "LEFT", { steps: 110, deviation: 45 });
+  await bezMouse.moveAndDoubleClick([700, 700], [150, 150], "LEFT", { steps: 110, deviation: 45, preciseClick: true });
 })();
 ```
 
