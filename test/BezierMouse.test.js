@@ -1,10 +1,11 @@
-import chai, { expect } from "chai";
-import sinon from "sinon";
-import sinonChai from "sinon-chai";
+const chai = require("chai");
+const expect = require("chai").expect;
+const sinon = require("sinon");
+const sinonChai = require("sinon-chai");
 chai.use(sinonChai);
-import { mouse, Button, randomPointIn } from "@nut-tree/nut-js";
-import BezierMouse from "../src/BezierMouse.js";
-import Utils from "../src/Utils.js";
+const { mouse, Button } = require("@nut-tree/nut-js");
+const BezierMouse = require("../src/BezierMouse.js");
+const Utils = require("../src/Utils.js");
 
 describe("BezierMouse", () => {
   let BezMouse, initPos, finPos, deviation;
