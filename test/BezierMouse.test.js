@@ -11,8 +11,8 @@ describe("BezierMouse", () => {
   let BezMouse, initPos, finPos, deviation;
   beforeEach(async () => {
     BezMouse = new BezierMouse();
-    initPos = [100, 100];
-    finPos = [600, 600];
+    initPos = { x: 100, y: 100 };
+    finPos = { x: 600, y: 600 };
     deviation = 20;
   });
   describe("moveAndClick", () => {
@@ -86,7 +86,7 @@ describe("BezierMouse", () => {
 
   describe("bezierCurveTo", () => {
     beforeEach(async () => {
-      sinon.stub(BezMouse, "getBezierControlPoint").returns([12, 12]);
+      sinon.stub(BezMouse, "getBezierControlPoint").returns({ x: 12, y: 12 });
     });
     afterEach(async () => {
       BezMouse.getBezierControlPoint.restore();
@@ -109,7 +109,7 @@ describe("BezierMouse", () => {
 
   describe("cubicBezierCurve", () => {
     beforeEach(async () => {
-      sinon.stub(BezMouse, "getBezierControlPoint").returns([12, 12]);
+      sinon.stub(BezMouse, "getBezierControlPoint").returns({ x: 12, y: 12 });
     });
     afterEach(async () => {
       BezMouse.getBezierControlPoint.restore();
@@ -117,10 +117,10 @@ describe("BezierMouse", () => {
     it("properly generates a random cubic bezier curve", async () => {
       const curve = BezMouse.cubicBezierCurve(initPos, finPos, deviation);
       expect(curve.points).eql([
-        { x: initPos[0], y: initPos[1] },
+        initPos,
         { x: 12, y: 12 },
         { x: 12, y: 12 },
-        { x: finPos[0], y: finPos[1] },
+        finPos,
       ]);
     });
   });
@@ -136,7 +136,7 @@ describe("BezierMouse", () => {
     });
     it("returns a psuedo-random bezier control point based on the initial/end positions and the deviation", async () => {
       const point = BezMouse.getBezierControlPoint(initPos, finPos);
-      expect(point).eql([648, 648]);
+      expect(point).eql({ x: 648, y: 648 });
     });
     it("default deviation is 20", async () => {
       BezMouse.getBezierControlPoint(initPos, finPos);
@@ -150,17 +150,23 @@ describe("BezierMouse", () => {
       const point = BezMouse.getBezierControlPoint(initPos, finPos, {
         flip: true,
       });
-      expect(point).eql([148, 148]);
+      expect(point).eql({ x: 148, y: 148 });
     });
   });
   // usage example:
+  // const BezierMouse = require("../src/BezierMouse.js");
   // (async () => {
   //   const bezMouse = new BezierMouse(75);
-  //   await bezMouse.moveAndDoubleClick([100, 100], [700, 700], "LEFT", {
-  //     steps: 110,
-  //     deviation: 45,
-  //     flip: false,
-  //   });
-  //   await bezMouse.moveAndDoubleClick([700, 700], [150, 150]);
+  //   await bezMouse.moveAndDoubleClick(
+  //     { x: 100, y: 100 },
+  //     { x: 700, y: 700 },
+  //     "LEFT",
+  //     {
+  //       steps: 110,
+  //       deviation: 45,
+  //       flip: false,
+  //     }
+  //   );
+  //   await bezMouse.moveAndDoubleClick({ x: 700, y: 700 }, { x: 150, y: 150 });
   // })();
 });

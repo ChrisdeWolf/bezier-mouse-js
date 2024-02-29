@@ -62,13 +62,12 @@ class BezierMouse {
       const deviation = 5;
       const randDeviation = () => Utils.randint(deviation / 2, deviation);
       const region = new Region(
-        finPos[0],
-        finPos[1],
+        finPos.x,
+        finPos.y,
         randDeviation(),
         randDeviation()
       );
-      const randFinPos = await randomPointIn(region);
-      finishPosition = [randFinPos.x, randFinPos.y];
+      finishPosition = await randomPointIn(region);
     }
     await mouse.move(this.bezierCurveTo(initPos, finishPosition, opts));
   }
@@ -89,35 +88,25 @@ class BezierMouse {
   }
 
   cubicBezierCurve(initPos, finPos, opts = {}) {
-    const [c0x, c0y] = this.getBezierControlPoint(initPos, finPos, opts);
-    const [c1x, c1y] = this.getBezierControlPoint(initPos, finPos, opts);
-    const [initX, initY] = initPos;
-    const [finX, finY] = finPos;
-
-    const cubicPoints = [
-      { x: initX, y: initY },
-      { x: c0x, y: c0y },
-      { x: c1x, y: c1y },
-      { x: finX, y: finY },
-    ];
+    const cntlPt1 = this.getBezierControlPoint(initPos, finPos, opts);
+    const cntlPt2 = this.getBezierControlPoint(initPos, finPos, opts);
+    const cubicPoints = [initPos, cntlPt1, cntlPt2, finPos];
     return new Bezier(cubicPoints);
   }
 
   getBezierControlPoint(initPos, finPos, opts = {}) {
     const { deviation = 20, flip = false } = opts;
-    const [initX, initY] = initPos;
-    const [finX, finY] = finPos;
 
-    const deltaX = abs(ceil(finX) - ceil(initX));
-    const deltaY = abs(ceil(finY) - ceil(initY));
+    const deltaX = abs(ceil(finPos.x) - ceil(initPos.x));
+    const deltaY = abs(ceil(finPos.y) - ceil(initPos.y));
     const randDeviation = () => Utils.randint(deviation / 2, deviation);
 
-    const refPointX = flip ? initX : finX;
-    const refPointY = flip ? initY : finY;
-    return [
-      refPointX + Utils.choice([-1, 1]) * deltaX * 0.01 * randDeviation(),
-      refPointY + Utils.choice([-1, 1]) * deltaY * 0.01 * randDeviation(),
-    ];
+    const refPointX = flip ? initPos.x : finPos.x;
+    const refPointY = flip ? initPos.y : finPos.y;
+    return {
+      x: refPointX + Utils.choice([-1, 1]) * deltaX * 0.01 * randDeviation(),
+      y: refPointY + Utils.choice([-1, 1]) * deltaY * 0.01 * randDeviation(),
+    };
   }
 }
 

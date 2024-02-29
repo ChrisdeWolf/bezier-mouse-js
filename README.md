@@ -11,12 +11,12 @@ npm install bezier-mouse-js
 
 Simple usage:
 ```
-const BezierMouse = require("../src/BezierMouse");
+const BezierMouse = require("bezier-mouse-js");
 
 (async () => {
   const bezMouse = new BezierMouse();
-  await bezMouse.moveAndClick([100, 100], [700, 700]);
-  await bezMouse.moveAndDoubleClick([700, 700], [150, 150]);
+  await bezMouse.moveAndClick({ x: 100, y: 100 }, { x: 700, y: 700 });
+  await bezMouse.moveAndDoubleClick({ x: 700, y: 700 }, { x: 100, y: 100 });
 })();
 ```
 
@@ -26,12 +26,17 @@ const BezierMouse = require("../src/BezierMouse");
 
 Advanced usage:
 ```
-const BezierMouse = require("../src/BezierMouse");
+const BezierMouse = require("bezier-mouse-js");
 
 (async () => {
   const bezMouse = new BezierMouse(75);
-  await bezMouse.moveAndClick([100, 100], [700, 700]);
-  await bezMouse.moveAndDoubleClick([700, 700], [150, 150], "LEFT", { steps: 110, deviation: 45, preciseClick: true });
+  await bezMouse.moveAndDoubleClick(
+    { x: 100, y: 100 },
+    { x: 700, y: 700 },
+    "LEFT",
+    { steps: 110, deviation: 45, flip: false }
+  );
+  await bezMouse.moveAndDoubleClick({ x: 700, y: 700 }, { x: 150, y: 150 });
 })();
 ```
 
