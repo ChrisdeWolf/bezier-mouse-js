@@ -30,6 +30,7 @@ class BezierMouse {
    * moveAndClick: moves mouse on a bezier curve and clicks
    * @param {Point} initPos
    * @param {Point} finPos
+   * @param {String} clickType - enum: LEFT, MIDDLE, RIGHT
    * @param {Options} opts
    */
   async moveAndClick(initPos, finPos, clickType = "LEFT", opts = {}) {
@@ -41,7 +42,7 @@ class BezierMouse {
    * moveAndDoubleClick: moves mouse on a bezier curve and double clicks
    * @param {Point} initPos
    * @param {Point} finPos
-   * @param {String} clickType - LEFT, MIDDLE, RIGHT
+   * @param {String} clickType - enum: LEFT, MIDDLE, RIGHT
    * @param {Options} opts
    */
   async moveAndDoubleClick(initPos, finPos, clickType = "LEFT", opts = {}) {
