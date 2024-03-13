@@ -22,7 +22,15 @@ const BezierMouse = require("bezier-mouse-js");
 
 **[Documentation Here](https://chrisdewolf.github.io/bezier-mouse-js/module-BezierMouse.html)**
 
-**[Demos Here](https://chrisdewolf.github.io/bezier-mouse-js-docs/)**
+**[Demo Here](https://chrisdewolf.github.io/bezier-mouse-js-docs/)**
+
+Demo Examples:
+<p float="left">
+  <img src="https://github.com/ChrisdeWolf/bezier-mouse-js/assets/30628193/a5288b6f-260f-47d7-b836-cb618826f0ac" width="220" />
+  <img src="https://github.com/ChrisdeWolf/bezier-mouse-js/assets/30628193/d33416a5-644e-4da8-89d6-9baa3354a0a7" width="220" />
+  <img src="https://github.com/ChrisdeWolf/bezier-mouse-js/assets/30628193/c6d7b4fb-d450-42eb-b3f0-b932de8069f5" width="220" />
+</p>
+
 
 Advanced usage:
 ```
