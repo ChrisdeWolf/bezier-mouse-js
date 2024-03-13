@@ -1,5 +1,7 @@
 # bezier-mouse-js
 bezier-mouse-js is a lightweight javascript library to mirror human-like mouse movements with [Bézier curves](https://en.wikipedia.org/wiki/B%C3%A9zier_curve).
+--
+<img src="https://github.com/ChrisdeWolf/bezier-mouse-js/assets/30628193/d846f51b-a004-4e5d-8805-db1263565bb2" width="500" />
 
 ## Getting Started
 
@@ -20,7 +22,7 @@ const BezierMouse = require("bezier-mouse-js");
 })();
 ```
 
-**[Documentation Here](https://chrisdewolf.github.io/bezier-mouse-js/module-BezierMouse.html)**
+**[Documentation Here (API Docs)](https://chrisdewolf.github.io/bezier-mouse-js/module-BezierMouse.html)**
 
 **[Demo Here](https://chrisdewolf.github.io/bezier-mouse-js-docs/)**
 
