@@ -6,7 +6,7 @@
   "main": "src/BezierMouse.js",
   "scripts": {
     "test": "mocha",
-    "docs": "./node_modules/.bin/jsdoc ./src/BezierMouse.js -d docs/"
+    "docs": "jsdoc ./src/BezierMouse.js -d docs/"
   },
   "keywords": [
     "automation",
@@ -27,7 +27,7 @@
   "homepage": "https://github.com/ChrisdeWolf/bezier-mouse-js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ChrisdeWolf/bezier-mouse-js"
+    "url": "git+https://github.com/ChrisdeWolf/bezier-mouse-js.git"
   },
   "dependencies": {
     "@nut-tree/nut-js": "^3.1.2",
