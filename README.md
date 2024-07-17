@@ -5,7 +5,7 @@ bezier-mouse-js is a lightweight javascript library to mirror human-like mouse m
 
 ## Getting Started
 
-Install the [`bezier-mouse-js` package](https://www.npmjs.com/package/bezier-mouse-js):
+Install the [bezier-mouse-js package](https://www.npmjs.com/package/bezier-mouse-js):
 
 ```
 npm install bezier-mouse-js
