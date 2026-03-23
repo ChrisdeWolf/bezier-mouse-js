@@ -17,14 +17,17 @@ function createNutJsMock() {
     },
     Button: { LEFT: 0, MIDDLE: 1, RIGHT: 2 } as Record<string, number>,
     Point: class {
-      constructor(public x: number, public y: number) {}
+      constructor(
+        public x: number,
+        public y: number,
+      ) {}
     },
     Region: class {
       constructor(
         public left: number,
         public top: number,
         public width: number,
-        public height: number
+        public height: number,
       ) {}
     },
     randomPointIn: sinon.stub().resolves({ x: 605, y: 605 }),
@@ -57,16 +60,12 @@ describe("BezierMouse", () => {
 
     it("then clicks (default LEFT click)", async () => {
       await bezMouse.moveAndClick(initPos, finPos);
-      expect(mockNut.mouse.click).to.have.been.calledWith(
-        mockNut.Button.LEFT
-      );
+      expect(mockNut.mouse.click).to.have.been.calledWith(mockNut.Button.LEFT);
     });
 
     it("can use a different button to click", async () => {
       await bezMouse.moveAndClick(initPos, finPos, "RIGHT");
-      expect(mockNut.mouse.click).to.have.been.calledWith(
-        mockNut.Button.RIGHT
-      );
+      expect(mockNut.mouse.click).to.have.been.calledWith(mockNut.Button.RIGHT);
     });
   });
 
@@ -86,14 +85,14 @@ describe("BezierMouse", () => {
     it("then double-clicks (default LEFT click)", async () => {
       await bezMouse.moveAndDoubleClick(initPos, finPos);
       expect(mockNut.mouse.doubleClick).to.have.been.calledWith(
-        mockNut.Button.LEFT
+        mockNut.Button.LEFT,
       );
     });
 
     it("can use a different button to click", async () => {
       await bezMouse.moveAndDoubleClick(initPos, finPos, "RIGHT");
       expect(mockNut.mouse.doubleClick).to.have.been.calledWith(
-        mockNut.Button.RIGHT
+        mockNut.Button.RIGHT,
       );
     });
   });
@@ -130,9 +129,7 @@ describe("BezierMouse", () => {
 
   describe("bezierCurveTo", () => {
     beforeEach(() => {
-      sinon
-        .stub(bezMouse, "getBezierControlPoint")
-        .returns({ x: 12, y: 12 });
+      sinon.stub(bezMouse, "getBezierControlPoint").returns({ x: 12, y: 12 });
     });
 
     afterEach(() => {
@@ -156,9 +153,7 @@ describe("BezierMouse", () => {
 
   describe("cubicBezierCurve", () => {
     beforeEach(() => {
-      sinon
-        .stub(bezMouse, "getBezierControlPoint")
-        .returns({ x: 12, y: 12 });
+      sinon.stub(bezMouse, "getBezierControlPoint").returns({ x: 12, y: 12 });
     });
 
     afterEach(() => {
@@ -215,12 +210,14 @@ describe("BezierMouse", () => {
 
   describe("when @nut-tree/nut-js is not installed", () => {
     beforeEach(() => {
-      (bezMouse as any).getNutJs = sinon.stub().rejects(
-        new Error(
-          "bezier-mouse-js: @nut-tree/nut-js is required for mouse control methods. " +
-            "Install it with: npm install @nut-tree/nut-js"
-        )
-      );
+      (bezMouse as any).getNutJs = sinon
+        .stub()
+        .rejects(
+          new Error(
+            "bezier-mouse-js: @nut-tree/nut-js is required for mouse control methods. " +
+              "Install it with: npm install @nut-tree/nut-js",
+          ),
+        );
     });
 
     it("moveAndClick throws a clear error", async () => {
