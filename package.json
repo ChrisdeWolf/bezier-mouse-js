@@ -1,23 +1,42 @@
 {
   "name": "bezier-mouse-js",
-  "type": "commonjs",
-  "version": "1.1.5",
-  "description": "Lightweight javascript library to mirror human-like mouse movements with Bézier curves.",
-  "main": "src/BezierMouse.js",
+  "type": "module",
+  "version": "2.0.0",
+  "description": "Lightweight library to generate human-like mouse movements with Bézier curves.",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
+    "build": "tsup",
     "test": "mocha",
-    "docs": "jsdoc ./src/BezierMouse.js -d docs/"
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "automation",
-    "bot",
-    "botting",
     "bezier",
     "mouse",
     "bezier-curves",
     "mouse-emulation",
-    "autoclicker",
-    "mouse-movement"
+    "mouse-movement",
+    "testing",
+    "ui-testing",
+    "human-like",
+    "cursor"
   ],
   "author": "ChrisdeWolf",
   "license": "MIT",
@@ -30,14 +49,28 @@
     "url": "git+https://github.com/ChrisdeWolf/bezier-mouse-js.git"
   },
   "dependencies": {
-    "@nut-tree/nut-js": "^3.1.2",
     "bezier-js": "^6.1.4"
   },
+  "peerDependencies": {
+    "@nut-tree/nut-js": "^3.1.2"
+  },
+  "peerDependenciesMeta": {
+    "@nut-tree/nut-js": {
+      "optional": true
+    }
+  },
   "devDependencies": {
+    "@nut-tree/nut-js": "^3.1.2",
+    "@types/chai": "^4.3.0",
+    "@types/mocha": "^10.0.0",
+    "@types/sinon": "^10.0.0",
+    "@types/sinon-chai": "^3.2.0",
     "chai": "^4.3.8",
-    "jsdoc": "~4.0.2",
     "mocha": "^10.6.0",
     "sinon": "^15.2.0",
-    "sinon-chai": "^3.7.0"
+    "sinon-chai": "^3.7.0",
+    "tsup": "^8.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
   }
 }

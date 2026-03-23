@@ -5,5 +5,11 @@
 # Ignore docs
 docs
 
-# Ignore tests
+# Ignore source & tests
+src
 test
+
+# Ignore config files
+tsconfig.json
+tsup.config.ts
+.mocharc.yml
